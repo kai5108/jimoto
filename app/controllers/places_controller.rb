@@ -1,18 +1,30 @@
 class PlacesController < ApplicationController
   
+  def new
+    @place = Place.new
+  end
+  
+  def create
+    @place = Place.new(place_params)
+    @place.user_id = current_user.id
+    @place.save
+    redirect_to places_path
+    # else
+    #   render "index"
+    #end
+  end
+  
   def index
     # kaminari
-    @place = Place.page(params[:page]).per(7)
-    @place_all = Place.all
+    @places = Place.all
+    # page(params[:page]).per(7)
+    # @place_all = Place.all
   end
   
   def show
     @place = Place.find(params[:id])
   end
   
-  def new
-    @places = Place.new
-  end
   
   def edit
     @place = Place.find(params[:id])
@@ -27,15 +39,6 @@ class PlacesController < ApplicationController
     end
   end
   
-  def create
-    @place = Place.new(place_params)
-    if @place.save
-      redirect_to place_path(@place)
-    else
-      render "new"
-    end
-  end
-  
   def destroy
     @place = Place.find(params[:id])
     @place.destroy
@@ -45,6 +48,6 @@ class PlacesController < ApplicationController
   
   private
   def place_params
-    params.require(:place).permit(:name, :image_id, :address, :capitan, :user_id)
+    params.require(:place).permit(:name, :image, :address, :capitan)
   end
 end

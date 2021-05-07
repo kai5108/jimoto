@@ -1,0 +1,13 @@
+<h3>詳細ページ</h3>
+<div class="place_show">
+  <p>投稿画像:<%= attachment_image_tag(@place, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
+  <p>観光地名:<%= @place.name %></p>
+  <p>住所:<%= @place.address %></p>
+  <p>ユーザー名:<%= @place.user.name %></p>
+  <p>場所説明:<%= @place.capitan %></p>
+  <p>投稿日時:<%= @place.created_at.strftime('%Y/%m/%d') %></p>
+  <% if @place.user == current_user %>
+    <%= link_to "編集", edit_place_path(@place) %>
+    <%= link_to "削除", place_path(@place), method: :delete %>
+  <% end %>
+</div>
