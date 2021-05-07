@@ -1,7 +1,8 @@
 class PlacesController < ApplicationController
   
   def index
-    @place = Place.all
+    # kaminari
+    @place = Place.page(params[:page]).per(7)
   end
   
   def show
