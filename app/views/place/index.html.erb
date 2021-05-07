@@ -1,0 +1,16 @@
+<h3>観光地一覧</h3>
+  <p>全<%= @place_all.count %></p>
+    <div class="new">
+      新規登録する際は<%= link_to"こちらから", new_place_path %>
+    </div>
+      <% @place.each do |place| %>
+        <div class="index">
+          <p>投稿画像:<%= attachment_image_tag(place, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
+          <p>観光地名:<%= link_to place_path(place.id) do %>
+               <%= place.name %>
+             <% end %>
+          </p>
+          <p><%= place.address </p>
+          <p>投稿ユーザー:<%= place.user.name %></p>
+        </div>
+      <% end %>

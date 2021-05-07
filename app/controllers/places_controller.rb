@@ -3,6 +3,7 @@ class PlacesController < ApplicationController
   def index
     # kaminari
     @place = Place.page(params[:page]).per(7)
+    @place_all = Place.all
   end
   
   def show
