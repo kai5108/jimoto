@@ -1,4 +1,4 @@
-<h3>User一覧</h3>
+<h3>User</h3>
 <% @user each do |user| %>
   <div class="user_index">
     <span>
@@ -7,9 +7,8 @@
       <% end %>
     </span>
     <span>name<%= user.name %></span>
-    <span>自己紹介<%= user.capitan %></span>
     <span>follow</span>
     <span>follower</span>
-    <span>post<%= user.place </span>
+    <span>post<%= user.places %></span>
   </div>
 <% end %>

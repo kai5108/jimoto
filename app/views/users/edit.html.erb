@@ -1,0 +1,10 @@
+<h3>My page edit</h3>
+<%= form_with model: @user, local:true do |f| %>
+  <span>image<%= f.file_field :image %></span>
+  <span>name<%= f.text_field :name %></span>
+  <span>capitan<%= f.text_field :capitan %></span>
+  <%= f.submit 'Edit' %>
+  <%= link_to :back do %>
+   <button>Back</button>
+  <% end %>
+<% end %>
