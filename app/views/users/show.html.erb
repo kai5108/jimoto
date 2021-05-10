@@ -5,7 +5,14 @@
   <span>capitan<%= @user.capitan %></span>
   <span>follow</span>
   <span>follower</span>
-  <span>post<%= @user.places.name %></span>
+  <span>post
+    <% @places.each do |place| %>
+      <%= link_to place_path(place) do %>
+        <%= place.name %>
+      <% end %>
+  </span>
+  <% end %>
+  <br>
   <%= link_to :back do %>
    <button>Back</button>
   <% end %>
