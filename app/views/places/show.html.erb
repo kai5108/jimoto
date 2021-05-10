@@ -7,7 +7,8 @@
   <p>場所説明:<%= @place.capitan %></p>
   <p>投稿日時:<%= @place.created_at.strftime('%Y/%m/%d') %></p>
   <% if @place.user == current_user %>
-    <%= link_to "編集", edit_place_path(@place) %>
-    <%= link_to "削除", place_path(@place), method: :delete %>
+    <%= link_to "back", :back %>
+    <%= link_to "edit", edit_place_path(@place) %>
+    <%= link_to "delete", place_path(@place), method: :delete %>
   <% end %>
 </div>
