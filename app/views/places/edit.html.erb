@@ -1,0 +1,11 @@
+<h3>投稿編集ページ</h3>
+<%= form_with model: @place, local:true do |f| %>
+  <p>画像<%= f.file_field :image %></p>
+  <p>観光地名<%= f.text_field :name %></p>
+  <p>住所<%= f.text_field :address %></p>
+  <p>説明<%= f.text_area :capitan %></p>
+  <%= f.submit 'edit' %>
+  <%= link_to :back do %>
+   <button>back</button>
+  <% end %>
+<% end %>
