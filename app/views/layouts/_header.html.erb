@@ -8,25 +8,25 @@
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '投稿フォーム', new_place_path, class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'マイページ', user_path(current_user.id), class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to '場所一覧', places_path, class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '投稿フォーム', new_place_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'マイページ', user_path(current_user.id), class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to '場所一覧', places_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
           <% else %>
-          <li class="nav-item">
-            <%= link_to "新規登録", new_user_registration_path, class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path, class: 'border rounded nav-link text-dark mr-4' %>
-          </li>
+            <li class="nav-item">
+              <%= link_to "新規登録", new_user_registration_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_user_session_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
           <% end %>
         </ul>
       </div>
