@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   # アソシエーション
   has_many :places, dependent: :destroy
+  has_many :place_comments, dependent: :destroy
   attachment :image
   
   #バリデーション

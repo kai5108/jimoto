@@ -1,6 +1,7 @@
 class Place < ApplicationRecord
   # アソシエーション
   belongs_to :user 
+  has_many :place_comments, dependent: :destroy
   attachment :image
   
   # バリデーション
