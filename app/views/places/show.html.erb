@@ -9,6 +9,6 @@
   <% if @place.user == current_user %>
     <button><%= link_to "Back", :back %></button>
     <button><%= link_to "Edit", edit_place_path(@place) %></button>
-    <button><%= link_to "Delete", place_path(@place), method: :delete %></button>
+    <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
   <% end %>
 </div>
