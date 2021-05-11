@@ -17,6 +17,6 @@
    <button>Back</button>
   <% end %>
   <% if user_signed_in? %>
-    <%= link_to "Edit", edit_user_path(@user) %>
+    <button><%= link_to "Edit", edit_user_path(@user) %></button>
   <% end %>
 </div>

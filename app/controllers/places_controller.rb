@@ -2,23 +2,24 @@ class PlacesController < ApplicationController
   
   def new
     @place = Place.new
+    @places = Place.all
+  end
+  
+  def index
+    # kaminari
+    @places = Place.all.page(params[:page]).per(4)
+    @place_all = Place.all
   end
   
   def create
     @place = Place.new(place_params)
     @place.user_id = current_user.id
     if @place.save
-      redirect_to places_path(@place)
+      flash[:notice] ='Place was successfully created.'
+      redirect_to place_path(@place)
     else
       render "new"
     end
-  end
-  
-  def index
-    # kaminari
-    @places = Place.all
-    # page(params[:page]).per(7)
-    # @place_all = Place.all
   end
   
   def show
