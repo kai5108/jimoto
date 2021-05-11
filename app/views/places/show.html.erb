@@ -12,6 +12,7 @@
     <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
   <% end %>
 </div>
+<!--コメント表示-->
 <div class="comment">
   <p>コメント<%= @place.place_comments.count %>件</p>
   <% @place.place_comments.each do |place_comment| %>
@@ -23,9 +24,10 @@
     <%= place_comment.comment %>
   <% end %>
 </div>
+<!--コメント投稿-->
 <div class="new_comment">
   <%= form_with(model:[@place, @place_comment], local: true) do |f| %>
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
-  <button><%= f.submit "送信する" %></button>
-<% end %>
+    <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+    <button><%= f.submit "送信する" %></button>
+  <% end %>
 </div>
