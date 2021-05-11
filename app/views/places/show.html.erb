@@ -1,6 +1,6 @@
-<h3>詳細ページ</h3>
+<h3>Place in details</h3>
 <div class="place_show">
-  <p>投稿画像:<%= attachment_image_tag(@place, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
+  <p>投稿画像:<%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
   <p>観光地名:<%= @place.name %></p>
   <p>住所:<%= @place.address %></p>
   <p>ユーザー名:<%= @place.user.name %></p>
@@ -11,4 +11,21 @@
     <button><%= link_to "Edit", edit_place_path(@place) %></button>
     <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
   <% end %>
+</div>
+<div class="comment">
+  <p>コメント<%= @place.place_comments.count %>件</p>
+  <% @place.place_comments.each do |place_comment| %>
+    <%= attachment_image_tag(place_comment.user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %>
+    <%= link_to user_path(user.id) do %>
+      <%= place_comment.user.name %>
+    <% end %>
+    <%= place_comment.created_at.strftime('%Y/%m/%d') %>
+    <%= place_comment.comment %>
+  <% end %>
+</div>
+<div class="new_comment">
+  <%= form_with(model:[@place, @place_comment], local: true) do |f| %>
+  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <button><%= f.submit "送信する" %></button>
+<% end %>
 </div>
