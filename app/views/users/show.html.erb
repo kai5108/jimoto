@@ -1,0 +1,22 @@
+<h3>User in details</h3>
+<div class="user_show">
+  <span><%= attachment_image_tag(@user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></span>
+  <span>name<%= @user.name %></span>
+  <span>capitan<%= @user.capitan %></span>
+  <span>follow</span>
+  <span>follower</span>
+  <span>post
+    <% @places.each do |place| %>
+      <%= link_to place_path(place) do %>
+        <%= place.name %>
+      <% end %>
+  </span>
+  <% end %>
+  <br>
+  <%= link_to :back do %>
+   <button>Back</button>
+  <% end %>
+  <% if user_signed_in? %>
+    <button><%= link_to "Edit", edit_user_path(@user) %></button>
+  <% end %>
+</div>
