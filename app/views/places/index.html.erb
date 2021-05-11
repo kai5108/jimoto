@@ -18,7 +18,11 @@
           <%= place.address %>
         </div>
         <div>投稿ユーザー
-          <%= link_to user_path(place.user) do %>
+          <% if user_signed_in? %>
+            <%= link_to user_path(place.user) do %>
+              <%= place.user.name %>
+            <% end %>
+          <% else %>
             <%= place.user.name %>
           <% end %>
         </div>

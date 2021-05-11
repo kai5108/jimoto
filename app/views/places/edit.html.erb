@@ -4,8 +4,9 @@
   <span>観光地名<%= f.text_field :name %></span>
   <span>住所<%= f.text_field :address %></span>
   <span>説明<%= f.text_area :capitan %></span>
-  <button><%= f.submit 'Edit' %></button>
   <%= link_to :back do %>
    <button>Back</button>
   <% end %>
+  <button><%= f.submit 'Edit' %></button>
+  <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
 <% end %>
