@@ -16,21 +16,21 @@
 <div class="comment">
   <p>コメント<%= @place.place_comments.count %>件</p>
   <% @place.place_comments.each do |place_comment| %>
-    <%= attachment_image_tag(place_comment.user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %>
+    <%= attachment_image_tag(place_comment.user, :image, :fill, 100, 75, format: 'jpeg', fallback: "no_image.jpg") %>
     <%= link_to user_path(place_comment.user) do %>
       <%= place_comment.user.name %>
     <% end %>
     <%= place_comment.created_at.strftime('%Y/%m/%d') %>
     <%= place_comment.comment %>
     <% if place_comment.user == current_user %>
-    <div class="delete">
+    <a class="delete">
       <%= link_to "delete", place_place_comment_path(place_comment.place,place_comment), method: :delete, "data-confirm" => "本当に削除しますか?" %>
-    </div>
+    </a>
     <% end %>
   <% end %>
 </div>
 <!--コメント投稿-->
-<% if user_signed_in? %>
+<% if user_signed_in? %><br>
   <div class="new_comment">
     <%= form_with(model:[@place, @place_comment], local: true) do |f| %>
       <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %><br>
