@@ -2,6 +2,7 @@ class Place < ApplicationRecord
   # アソシエーション
   belongs_to :user 
   has_many :place_comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   attachment :image
   
   # バリデーション
@@ -9,4 +10,9 @@ class Place < ApplicationRecord
   validates :capitan, presence: true, length:{minimum: 5,maximum: 300} #場所説明
   validates :address, presence: true #住所
   validates :image, presence: true
+
+  #いいね機能
+  def likeed_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 end

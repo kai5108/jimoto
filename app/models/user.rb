@@ -6,6 +6,7 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :places, dependent: :destroy
   has_many :place_comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
   attachment :image
   
   #バリデーション
