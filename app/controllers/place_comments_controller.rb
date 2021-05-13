@@ -7,8 +7,8 @@ class PlaceCommentsController < ApplicationController
       redirect_to request.referer
     @place_comment = PlaceComment.new
     # kaminari
-    @place_comments = @place.place_comments.page(params[:page]).per(10)
-      render :create
+    # @place_comments = @place.place_comments.page(params[:page]).per(10)
+    #   render :create
   end
 
   def destroy

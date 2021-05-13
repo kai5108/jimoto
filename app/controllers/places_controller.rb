@@ -9,6 +9,7 @@ class PlacesController < ApplicationController
     # kaminari
     @places = Place.all.page(params[:page]).per(6)
     @place_all = Place.all
+    @user = current_user
   end
 
   def create
@@ -16,7 +17,6 @@ class PlacesController < ApplicationController
     @place.user_id = current_user.id
     @user = current_user
     if @place.save
-      flash[:notice] ='Place was successfully created.'
       redirect_to place_path(@place)
     else
       render "new"
@@ -26,6 +26,7 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @place_comment = PlaceComment.new
+    @user = current_user
   end
 
 
