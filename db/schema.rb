@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2021_05_13_003115) do
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "place_image_id"
+    t.integer "place_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

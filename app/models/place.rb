@@ -12,7 +12,7 @@ class Place < ApplicationRecord
   validates :image, presence: true
 
   #いいね機能
-  def likeed_by?(user)
+  def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
 end

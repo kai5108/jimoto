@@ -7,13 +7,14 @@
   <!--いいね削除-->
     <p>
       <%= link_to place_likes_path(@place), method: :delete do %>
-        ♥<%= place.likes.count %>
+        ♥<%= @place.likes.count %>
        <% end %> 
     </p>
   <!--いいねする-->
+  <% else %>
     <p>
-      <%= link_to place_like_path(@place), method: :post do %>
-        ♡<%= place.likes.count %>
+      <%= link_to place_likes_path(@place), method: :post do %>
+        ♡<%= @place.likes.count %>
       <% end %> 
     </p>
   <% end %>
