@@ -26,7 +26,8 @@
             <%= place.user.name %>
           <% end %>
         </p>
-        <p><%= link_to "#{place.place_comments.count} コメント", place_path(place.id) %></p>
+        <p>♥<%= place.likes.count %></p>
+        <p><%= "コメント#{place.place_comments.count} 件" %></p>
       <% end %>
   <%= paginate @places %>
 <%= link_to :back do %>
