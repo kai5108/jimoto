@@ -45,6 +45,7 @@
     <% end %>
   <% end %>
 </div>
+<%= paginate @place_comments %>
 <!--コメント投稿-->
 <% if user_signed_in? %><br>
   <div class="new_comment">
