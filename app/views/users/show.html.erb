@@ -3,8 +3,16 @@
   <p><%= attachment_image_tag(@user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
   <p>name<%= @user.name %></p>
   <p>capitan<%= @user.capitan %></p>
-  <p>follow<%= @user.followings.count %></p>
-  <p>follower<%= @user.followers.count %></p>
+  <p>follow
+    <%= link_to user_follow_path(@user) do %>
+      <%= @user.followings.count %>
+    <% end %>
+  </p>
+  <p>follower
+    <%= link_to user_follow_path(@user) do %>
+      <%= @user.followers.count %>
+    <% end %>
+  </p>
   <%= render 'relationships/follow', user: @user %>
   <p>post
     <% @places.each do |place| %>
