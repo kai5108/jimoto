@@ -1,14 +1,14 @@
 <h3>User</h3>
 <% @user.each do |user| %>
   <div class="user_index">
-    <span>
+    <p>
       <%= link_to user_path(user.id) do %>
         <%= attachment_image_tag(user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %>
       <% end %>
-    </span>
-    <span>name<%= user.name %></span>
-    <span>follow</span>
-    <span>follower</span>
-    <span>post<%= user.places %></span>
+    </p>
+    <p>name<%= user.name %></p>
+    <p>follow</p>
+    <p>follower</p>
+    <p>post<%= user.places %></p>
   </div>
 <% end %>

@@ -1,16 +1,25 @@
 <h3>User in details</h3>
 <div class="user_show">
-  <span><%= attachment_image_tag(@user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></span>
-  <span>name<%= @user.name %></span>
-  <span>capitan<%= @user.capitan %></span>
-  <span>follow</span>
-  <span>follower</span>
-  <span>post
+  <p><%= attachment_image_tag(@user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
+  <p>name<%= @user.name %></p>
+  <p>capitan<%= @user.capitan %></p>
+  <p>follow
+    <%= link_to user_follow_path(@user) do %>
+      <%= @user.followings.count %>
+    <% end %>
+  </p>
+  <p>follower
+    <%= link_to user_follower_path(@user) do %>
+      <%= @user.followers.count %>
+    <% end %>
+  </p>
+  <%= render 'relationships/follow', user: @user %>
+  <p>post
     <% @places.each do |place| %>
       <%= link_to place_path(place) do %>
         <%= place.name %>
       <% end %>
-  </span>
+  </p>
   <% end %>
   <br>
   <%= link_to :back do %>

@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @places= @user.places.all
   end
 
@@ -22,6 +22,14 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+  end
+  
+  def follow
+    @user = User.find(params[:user_id])
+  end
+  
+  def follower
+    @user = User.find(params[:user_id])
   end
 
   private
