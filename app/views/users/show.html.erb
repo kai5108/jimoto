@@ -9,7 +9,7 @@
     <% end %>
   </p>
   <p>follower
-    <%= link_to user_follow_path(@user) do %>
+    <%= link_to user_follower_path(@user) do %>
       <%= @user.followers.count %>
     <% end %>
   </p>
