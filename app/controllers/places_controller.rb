@@ -46,7 +46,6 @@ class PlacesController < ApplicationController
   def destroy
     @place = Place.find(params[:id])
     @place.destroy
-    flash[:notice] ='Place was successfully created.'
     redirect_to places_path
   end
 
