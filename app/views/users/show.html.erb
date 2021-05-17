@@ -13,7 +13,9 @@
       <%= @user.followers.count %>
     <% end %>
   </p>
-  <%= render 'relationships/follow', user: @user %>
+  <span id="follow-<%= @user.id %>">
+    <p><%= render 'relationships/follow', user: @user %></p>
+  </span>
   <p>post
     <% @places.each do |place| %>
       <%= link_to place_path(place) do %>

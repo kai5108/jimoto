@@ -1,11 +1,11 @@
 <% unless current_user == user %>
   <% if current_user.following?(user) %>
-    <%= form_for(current_user.followers.build, url: user_relationship_path(user.id), method: :delete) do |f| %>
+    <%= form_with(model: current_user.relationships.find_by(follow_id: user.id), url: user_relationship_path(user), method: :delete, remote: true) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
       <%= f.submit 'Unfollow', class: 'btn btn-danger' %>
     <% end %>
   <% else %>
-    <%= form_for(current_user.followers.build, url: user_relationships_path(user), method: :post) do |f| %>
+    <%= form_with(model: current_user.relationships.find_or_initialize_by(follow_id: user.id), url: user_relationships_path(user), method: :post, remote: true) do |f| %>
       <%= hidden_field_tag :follow_id, user.id %>
       <%= f.submit 'Follow', class: 'btn btn-primary' %>
     <% end %>

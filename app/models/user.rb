@@ -13,14 +13,14 @@ class User < ApplicationRecord
   has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   has_many :followers, through: :reverse_of_relationships, source: :user
   attachment :image
-  
+
   #バリデーション
   validates :name ,presence: true, length:{maximum: 30}
   validates :email ,presence: true, uniqueness: true, format: { with: /\A[\w+-.]+@[a-z\d-]+(.[a-z\d-]+)*.[a-z]+\z/i, message: 'は半角英数字で入力してください' }
 
   def follow(other_user)
     unless self == other_user
-      self.relationships.find_or_create_by(follow_id: other_user.id)
+      self.relationships.find_or_initialize_by(follow_id: other_user.id)
     end
   end
 
