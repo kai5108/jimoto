@@ -23,13 +23,15 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
-  
+  # フォロー
   def follow
     @user = User.find(params[:user_id])
+    render "follow"
   end
-  
+  # フォロワー
   def follower
     @user = User.find(params[:user_id])
+    render "follower"
   end
 
   private
