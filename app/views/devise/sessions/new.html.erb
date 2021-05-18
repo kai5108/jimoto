@@ -1,6 +1,6 @@
-<h2 class="session border rounded">ログイン</h2>
-
+<h2 class="session border rounded">Log in</h2>
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
+<%= render 'layouts/massage', obj: @user %>
 <div class="container">
   <table class="mx-auto">
     <tr>
