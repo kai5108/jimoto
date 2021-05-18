@@ -1,4 +1,5 @@
 <h3>Post edit</h3>
+<%= render 'layouts/massage', obj: @place %>
 <%= form_with model: @place, local:true do |f| %>
   <span>画像<%= f.file_field :image %></span>
   <span>観光地名<%= f.text_field :name %></span>

@@ -1,0 +1,9 @@
+<% if obj.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+      <% obj.errors.full_messages.each do |message| %>
+        <li><span class="error-massage"><%= message %></span></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

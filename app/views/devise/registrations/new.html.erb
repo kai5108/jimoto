@@ -1,5 +1,5 @@
-<h2 class="session border rounded">新規会員登録</h2>
-
+<h2 class="session border rounded">Sign up</h2>
+<%#= render 'layouts/massage', obj: @user %>
 <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
 <div class="container">
   <%= render "devise/shared/error_messages", resource: resource %>
