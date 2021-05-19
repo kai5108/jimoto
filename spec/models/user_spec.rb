@@ -26,8 +26,9 @@ RSpec.describe User, type: :model do
   
   describe 'バリデーションテスト' do
     subject { user.valid? }
+    
     let!(:other_user) { create(:user) }
-  # 　let(:user) { build(:user) }
+    let(:user) { FactoryBot.create(:user) }
 
     context 'nameカラム' do
       it '空白でないこと' do
