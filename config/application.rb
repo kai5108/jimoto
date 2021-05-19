@@ -17,3 +17,7 @@ module Jimoto
     # the framework and any gems in your application.
   end
 end
+# #自動的にRSpecのファイルを作成してくれる
+# config.generators do |g|
+#   g.test_framework :rspec
+# end

@@ -23,4 +23,25 @@ RSpec.describe User, type: :model do
       end
     end
   end
+  
+  describe 'バリデーションテスト' do
+    subject { user.valid? }
+    let!(:other_user) { create(:user) }
+  # 　let(:user) { build(:user) }
+
+    context 'nameカラム' do
+      it '空白でないこと' do
+        user.name = ''
+        is_expected.to eq false
+      end
+      it '30文字以下であること 30文字は○' do
+        user.name = Faker::Lorem.characters(number: 30)
+        is_expected.to eq true
+      end
+      it '30文字以下であること 31文字は×' do
+        user.name = Faker::Lorem.characters(number: 31)
+        is_expected.to eq false
+      end
+    end
+  end
 end
