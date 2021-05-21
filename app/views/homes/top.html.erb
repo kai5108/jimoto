@@ -1,12 +1,10 @@
 <div class="home">
   <div class="text-center">
-    <script src="jquery.min.js"></script>
     このサイトはあなたの地元の魅力を発信していくサイトです。<br>
     ここにしかない場所や珍しいところまで、どんどん投稿してください！<br>
   </div>
+  <h3>New Place Post!!</h3>
   <div class="new">
-    <!--ここに新着投稿リストを導入-->
-    <!--画像込みで表示できるようにする-->
     <% @places.each do |place| %>
         <p>投稿画像
           <%= link_to place_path(place.id) do %>
