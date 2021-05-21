@@ -2,7 +2,12 @@
   <div id="place_comment">
     <p>コメント<%= @place.place_comments.count %>件</p>
     <% @place.place_comments.each do |place_comment| %>
-      <%= link_to user_path(place_comment.user.id), remote: true do %>
+      <% if user_signed_in? %>
+        <%= link_to user_path(place_comment.user.id), local: true do %>
+          <%= attachment_image_tag(place_comment.user, :image, :fill, 100, 75, format: 'jpeg', fallback: "no_image.jpg") %>
+          <%= place_comment.user.name %>
+        <% end %>
+      <% else %>
         <%= attachment_image_tag(place_comment.user, :image, :fill, 100, 75, format: 'jpeg', fallback: "no_image.jpg") %>
         <%= place_comment.user.name %>
       <% end %>

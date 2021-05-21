@@ -6,8 +6,10 @@ class PlacesController < ApplicationController
   end
 
   def index
+    @place = Place.includes(:liked_users).sort {|a,b| b.liked_users.size <=> a.liked_users.size}
     # kaminari
-    @places = Place.all.page(params[:page]).per(6)
+    @places = Kaminari.paginate_array(@place).page(params[:page]).per(6)
+    # @places = Place.all.page(params[:page]).per(6)
     @place_all = Place.all
     @user = current_user
   end
