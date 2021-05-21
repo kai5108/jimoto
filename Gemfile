@@ -69,3 +69,9 @@ gem 'font-awesome-sass', '~> 5.13'
 gem 'pry-byebug'
 gem 'kaminari','~> 0.17.0'
 gem 'byebug'
+group :test do
+  gem 'capybara', '>= 2.15'
+  gem 'rspec-rails'
+  gem "factory_bot_rails"
+  gem 'faker'
+end

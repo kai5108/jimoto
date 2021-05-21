@@ -9,6 +9,28 @@
         <ul class="navbar-nav ml-auto">
           <% if user_signed_in? %>
             <li class="nav-item">
+<<<<<<< HEAD
+              <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'New post', new_place_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'My page', user_path(current_user.id), class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Place', places_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+          <% else %>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Log in", new_user_session_path, class: 'border rounded nav-link text-dark mr-4' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Place', places_path, class: 'border rounded nav-link text-dark mr-4' %>
+=======
               <%= link_to "Log out", destroy_user_session_path, method: :delete, class: 'fas fa-sign-out-alt border rounded nav-link text-dark mr-4' %>
             </li>
             <li class="nav-item">
@@ -29,6 +51,7 @@
             </li>
             <li class="nav-item">
               <%= link_to 'Place', places_path, class: 'fas fa-map-marker-alt border rounded nav-link text-dark mr-4' %>
+>>>>>>> e8528b5bd3e8ac5c049338a041f9462185d2a28c
             </li>
           <% end %>
         </ul>
