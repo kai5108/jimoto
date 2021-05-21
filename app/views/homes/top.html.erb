@@ -3,8 +3,33 @@
     このサイトはあなたの地元の魅力を発信していくサイトです。<br>
     ここにしかない場所や珍しいところまで、どんどん投稿してください！<br>
   </div>
+  <h3>New Place Post!!</h3>
   <div class="new">
-    <!--ここに新着投稿リストを導入-->
-    <!--画像込みで表示できるようにする-->
+    <% @places.each do |place| %>
+        <p>投稿画像
+          <%= link_to place_path(place.id) do %>
+            <%= attachment_image_tag(place, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %>
+          <% end %>
+        </p>
+        <p>観光地名
+          <%= link_to place_path(place.id) do %>
+            <%= place.name %>
+          <% end %>
+        </p>
+        <p>住所
+          <%= place.address %>
+        </p>
+        <p>投稿ユーザー
+          <% if user_signed_in? %>
+            <%= link_to user_path(place.user) do %>
+              <%= place.user.name %>
+            <% end %>
+          <% else %>
+            <%= place.user.name %>
+          <% end %>
+        </p>
+        <p>♥<%= place.likes.count %></p>
+        <p><%= "コメント#{place.place_comments.count} 件" %></p>
+      <% end %>
   </div>
 </div>

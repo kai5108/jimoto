@@ -3,6 +3,8 @@ class Place < ApplicationRecord
   belongs_to :user 
   has_many :place_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  # いいねに基づいた表示順
+  has_many :liked_users, through: :likes, source: :user
   attachment :image
   
   # バリデーション

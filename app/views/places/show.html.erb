@@ -1,11 +1,15 @@
 <h3>Place in details</h3>
 <div class="place_show">
-  <p>投稿画像:<%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
+  <p><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
   <p>観光地名:<%= @place.name %></p>
   <!--いいね機能-->
-  <span id="like-<%= @place.id %>">
-    <%= render 'likes/like', place: @place %>
-  </span>
+  <% if user_signed_in? %>
+    <span id="like-<%= @place.id %>">
+      <%= render 'likes/like', place: @place %>
+    </span>
+  <% else %>
+    <p>♥<%= @place.likes.count %></p>
+  <% end %>
   <p>住所:<%= @place.address %></p>
   <p>ユーザー名:<%= @place.user.name %></p>
   <p>場所説明:<%= @place.capitan %></p>
