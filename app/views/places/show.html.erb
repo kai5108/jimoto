@@ -22,8 +22,8 @@
 </div>
 <!--コメント表示-->
 <%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
-<!--地図表示-->
-<div id="map" style='width: 50%; height: 300px;'></div>
+<!--地図表示--><br>
+<div id="map" style='width: 50%; height: 250px;'></div>
   <script type="text/javascript">
       handler = Gmaps.build('Google');
       handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){

@@ -16,3 +16,5 @@
 //= require activestorage
 //= require_tree .
 //= require jquery_ujs
+//= require underscore
+//= require gmaps/google
