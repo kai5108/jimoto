@@ -22,3 +22,21 @@
 </div>
 <!--コメント表示-->
 <%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
+<!--地図表示--><br>
+<div id="map" style='width: 50%; height: 250px;'></div>
+  <script type="text/javascript">
+      handler = Gmaps.build('Google');
+      handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+        markers = handler.addMarkers([
+          {
+            "lat": <%= @place.latitude %>,
+            "lng": <%= @place.longitude %>,
+            "infowindow": '<p><%= @place.address %></p><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{@place.latitude},#{@place.longitude}&iwloc=J",target: "_blank" ,class:"gmap-link"%></p>',
+
+          }
+        ]);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+        handler.getMap().setZoom(17);
+      });
+  </script>
