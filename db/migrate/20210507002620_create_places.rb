@@ -6,6 +6,8 @@ class CreatePlaces < ActiveRecord::Migration[5.2]
       t.text :capitan
       t.string :user_id
       t.string :address
+      t.float :latitude
+      t.float :longitude
 
       t.timestamps
     end

@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_05_13_071143) do
     t.text "capitan"
     t.string "user_id"
     t.string "address"
+    t.float "latitude"
+    t.float "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

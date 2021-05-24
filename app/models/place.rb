@@ -13,6 +13,9 @@ class Place < ApplicationRecord
   validates :address, presence: true #住所
   validates :image, presence: true
 
+  # 地図表示、緯度経度
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
   #いいね機能
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
