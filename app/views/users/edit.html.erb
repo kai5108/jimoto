@@ -1,9 +1,9 @@
 <h3>My page edit</h3>
 <%= render 'layouts/massage', obj: @user %>
 <%= form_with model: @user, local:true do |f| %>
-  <span>image<%= f.file_field :image %></span>
-  <span>name<%= f.text_field :name %></span>
-  <span>capitan<%= f.text_field :capitan %></span>
+  <p>image<%= f.file_field :image %></p>
+  <p>name<%= f.text_field :name %></p>
+  <p>capitan<%= f.text_field :capitan %></p>
   <button><%= f.submit 'Edit' %></button>
   <%= link_to :back do %>
    <button>Back</button>

@@ -1,10 +1,10 @@
 <h3>Post edit</h3>
 <%= render 'layouts/massage', obj: @place %>
 <%= form_with model: @place, local:true do |f| %>
-  <span>画像<%= f.file_field :image %></span>
-  <span>観光地名<%= f.text_field :name %></span>
-  <span>住所<%= f.text_field :address %></span>
-  <span>説明<%= f.text_area :capitan %></span>
+  <p>画像<%= f.file_field :image %></p>
+  <p>観光地名<%= f.text_field :name %></p>
+  <p>住所<%= f.text_field :address %></p>
+  <p>説明<%= f.text_area :capitan %></p>
   <%= link_to :back do %>
    <button>Back</button>
   <% end %>
