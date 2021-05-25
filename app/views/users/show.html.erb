@@ -1,33 +1,34 @@
-<h3>User in details</h3>
-<div class="user_show">
-  <p><%= attachment_image_tag(@user, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
-  <p>name<%= @user.name %></p>
-  <p>capitan<%= @user.capitan %></p>
-  <p>follow
-    <%= link_to user_follow_path(@user) do %>
-      <%= @user.followings.count %>
-    <% end %>
-  </p>
-  <p>follower
-    <%= link_to user_follower_path(@user) do %>
-      <%= @user.followers.count %>
-    <% end %>
-  </p>
-  <span id="follow-<%= @user.id %>">
-    <p><%= render 'relationships/follow', user: @user %></p>
-  </span>
-  <p>post
-    <% @places.each do |place| %>
-      <%= link_to place_path(place) do %>
-        <%= place.name %>
+<h3 class="title">User in details</h3>
+<div class="top">
+  <div class="text-center">
+    <p><%= attachment_image_tag(@user, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
+    <p>name:<%= @user.name %></p>
+    <p>capitan:<%= @user.capitan %></p>
+    <p>follow:
+      <%= link_to user_follow_path(@user) do %>
+        <%= @user.followings.count %>
       <% end %>
-  </p>
-  <% end %>
-  <br>
-  <%= link_to :back do %>
-   <button>Back</button>
-  <% end %>
-  <% if user_signed_in? %>
-    <button><%= link_to "Edit", edit_user_path(@user) %></button>
-  <% end %>
+    </p>
+    <p>follower:
+      <%= link_to user_follower_path(@user) do %>
+        <%= @user.followers.count %>
+      <% end %>
+    </p>
+    <span id="follow-<%= @user.id %>">
+      <p><%= render 'relationships/follow', user: @user %></p>
+    </span>
+    <p>post:
+      <% @places.each do |place| %>
+        <%= link_to place_path(place) do %>
+          <%= place.name %>
+        <% end %>
+    </p>
+    <% end %><br>
+    <%= link_to :back do %>
+     <button>Back</button>
+    <% end %>
+    <% if user_signed_in? %>
+      <button><%= link_to "Edit", edit_user_path(@user) %></button>
+    <% end %>
+  </div>
 </div>

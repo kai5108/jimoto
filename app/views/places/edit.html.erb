@@ -1,13 +1,31 @@
-<h3>Post edit</h3>
-<%= render 'layouts/massage', obj: @place %>
-<%= form_with model: @place, local:true do |f| %>
-  <p>画像<%= f.file_field :image %></p>
-  <p>観光地名<%= f.text_field :name %></p>
-  <p>住所<%= f.text_field :address %></p>
-  <p>説明<%= f.text_area :capitan %></p>
-  <%= link_to :back do %>
-   <button>Back</button>
-  <% end %>
-  <button><%= f.submit 'Post' %></button>
-  <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
-<% end %>
+<h3 class="title">Post edit</h3>
+<div class="container">
+  <%= render 'layouts/massage', obj: @place %>
+  <table class="mx-auto border-light">
+    <%= form_with model: @place, local:true do |f| %>
+    <tr>
+      <td width="100">画像</td>
+      <td><%= f.file_field :image %></td>
+    </tr>
+    <tr>
+       <td>観光地名</td>
+       <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>住所</td>
+      <td colspan="3"><%= f.text_field :address, :size=>"70" %></td>
+    </tr>
+    <tr>
+      <td>説明</td>
+      <td><%= f.text_area :capitan, :size=>"70x5" %></td>
+    </tr>
+  </table>
+  <div class="text-center">
+    <%= link_to :back do %>
+     <button>Back</button>
+    <% end %>
+    <button><%= f.submit 'Post' %></button>
+    <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
+    <% end %>
+  </div>
+</div>

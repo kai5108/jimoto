@@ -1,9 +1,20 @@
-<h3>My page edit</h3>
+<h3 class="title">My page edit</h3>
 <%= render 'layouts/massage', obj: @user %>
-<%= form_with model: @user, local:true do |f| %>
-  <p>image<%= f.file_field :image %></p>
-  <p>name<%= f.text_field :name %></p>
-  <p>capitan<%= f.text_field :capitan %></p>
+<table class="mx-auto border-light">
+  <%= form_with model: @user, local:true do |f| %>
+  <tr>
+    <td width="100">image</td>
+    <td><%= f.file_field :image %></td>
+  </tr>
+  <tr>
+    <td>name</td>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <td>capitan</td>
+    <td><%= f.text_field :capitan, :size=>"40x5"%></td>
+  </tr>
+</table>
   <button><%= f.submit 'Edit' %></button>
   <%= link_to :back do %>
    <button>Back</button>
