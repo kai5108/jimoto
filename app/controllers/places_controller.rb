@@ -28,6 +28,7 @@ class PlacesController < ApplicationController
   def show
     @place = Place.find(params[:id])
     @place_comment = PlaceComment.new
+    @place_comments = @place.place_comments.page(params[:page]).per(10)
     @user = current_user
   end
 

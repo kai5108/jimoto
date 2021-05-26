@@ -1,13 +1,26 @@
-<h3>follower</h3>
+<h3 class="title">follower</h3>
 
 <%= form_with model: @user, url:'follower', local: true do |f| %>
   <% @user.followers.each do |user| %>
-    <div class="follow_index">
-      <p><%= attachment_image_tag(user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></p>
-      <p><%= user.name %></p>
-      <p><%= user.followings.count %></p>
-      <p><%= user.followers.count %></p>
-      <p><%= link_to "Show",user_path(user.id) %></p>
+    <div class="top">
+      <table class="mx-auto border-light">
+        <thead>
+          <tr>
+            <td width="100"></td>
+            <td width="100">name</td>
+            <td width="100">follow</td>
+            <td width="100">follower</td>
+            <td width="100"></td>
+          </tr>
+        </thead>
+        <tr>
+          <td width="100"><%= attachment_image_tag(user, :image, :fill, 150, 100, format: 'jpeg', fallback: "no_image.jpg") %></td>
+          <td width="100"><%= user.name %></td>
+          <td width="100"><%= user.followings.count %></td>
+          <td width="100"><%= user.followers.count %></td>
+          <td width="100"><%= link_to "Show",user_path(user.id) %></td>
+        </tr>
+      </table><br>
     </div>
   <% end %>
 <% end %>
