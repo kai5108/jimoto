@@ -1,44 +1,64 @@
 <h3 class="title">Place in details</h3>
 <div class="top">
-  <div class="text-center">
-    <p><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
-    <p>観光地名:<%= @place.name %></p>
-    <!--いいね機能-->
-    <% if user_signed_in? %>
-      <span id="like-<%= @place.id %>">
-        <%= render 'likes/like', place: @place %>
-      </span>
-    <% else %>
-      <p>♥<%= @place.likes.count %></p>
-    <% end %>
-    <p>住所:<%= @place.address %></p>
-    <p>ユーザー名:<%= @place.user.name %></p>
-    <p>場所説明:<%= @place.capitan %></p>
-    <p>投稿日時:<%= @place.created_at.strftime('%Y/%m/%d') %></p>
+  <table class="mx-auto text-center">
+    <thead>
+      <tr>
+        <td width="200"></td>
+        <td width="200">Place</td>
+        <td width="200">Like</td>
+        <td width="200">Address</td>
+        <td width="200">Capitan</td>
+        <td width="200">User name</td>
+        <td width="200">Create time</td>
+      </tr>
+    </thead>
+    <body>
+      <tr>
+        <td width="200"><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></td>
+        <td width="200"><%= @place.name %></td>
+        <td width="200"><!--いいね機能-->
+          <% if user_signed_in? %>
+            <span id="like-<%= @place.id %>">
+              <%= render 'likes/like', place: @place %>
+            </span>
+          <% else %>
+            <p>♥<%= @place.likes.count %></p>
+          <% end %>
+        </td>
+        <td width="200"><%= @place.capitan %></td>
+        <td width="200"><%= @place.address %></td>
+        <td width="200">
+          <%= link_to user_path(@place.user) do %>
+            <%= @place.user.name %>
+          <% end %>
+        </td>
+        <td width="200"><%= @place.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+    </body>
+  </table>
     <% if @place.user == current_user %>
       <button><%= link_to "Back", :back %></button>
       <button><%= link_to "Edit", edit_place_path(@place) %></button>
       <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
     <% end %>
-  
-</div>
-<!--コメント表示-->
-<%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
-<!--地図表示--><br>
-<div id="map" style='width: 50%; height: 250px;'></div>
-  <script type="text/javascript">
-      handler = Gmaps.build('Google');
-      handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
-        markers = handler.addMarkers([
-          {
-            "lat": <%= @place.latitude %>,
-            "lng": <%= @place.longitude %>,
-            "infowindow": '<p><%= @place.address %></p><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{@place.latitude},#{@place.longitude}&iwloc=J",target: "_blank" ,class:"gmap-link"%></p>',
-
-          }
-        ]);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-        handler.getMap().setZoom(17);
-      });
-  </script>
+    <!--コメント表示-->
+    <%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
+    <!--地図表示--><br>
+    <div id="map" style='width: 100%; height: 300px;'></div>
+      <script type="text/javascript">
+          handler = Gmaps.build('Google');
+          handler.buildMap({ provider: { scrollwheel: false }, internal: {id: 'map'}}, function(){
+            markers = handler.addMarkers([
+              {
+                "lat": <%= @place.latitude %>,
+                "lng": <%= @place.longitude %>,
+                "infowindow": '<p><%= @place.address %></p><p><%= link_to "Googleマップで見る" ,"https://maps.google.co.jp/maps?q=loc:#{@place.latitude},#{@place.longitude}&iwloc=J",target: "_blank" ,class:"gmap-link"%></p>',
+    
+              }
+            ]);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            handler.getMap().setZoom(17);
+          });
+      </script>
+  </div>

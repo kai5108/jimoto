@@ -2,33 +2,54 @@
 <div class="top">
   <div class="text-center">
     <p><%= attachment_image_tag(@user, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
-    <p>name:<%= @user.name %></p>
-    <p>capitan:<%= @user.capitan %></p>
-    <p>follow:
-      <%= link_to user_follow_path(@user) do %>
-        <%= @user.followings.count %>
+    <table class="mx-auto border-light">
+        <tr>
+          <td>name</td>
+          <td><%= @user.name %></td>
+        </tr>
+        <tr>
+          <td width="100">capitan</td>
+          <td><%= @user.capitan %></td>
+        </tr>
+        <tr>
+          <td>follow</td>
+          <td>
+            <%= link_to user_follow_path(@user) do %>
+              <%= @user.followings.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>follower</td>
+          <td>
+            <%= link_to user_follower_path(@user) do %>
+              <%= @user.followers.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td>post</td>
+          <td>
+            <span id="follow-<%= @user.id %>">
+              <p><%= render 'relationships/follow', user: @user %></p>
+            </span>
+          </td>
+          <td>
+            <% @places.each do |place| %>
+              <%= link_to place_path(place) do %>
+                <%= place.name %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+    </table>
+    <div class="text-center">
+      <%= link_to :back do %>
+       <button>Back</button>
       <% end %>
-    </p>
-    <p>follower:
-      <%= link_to user_follower_path(@user) do %>
-        <%= @user.followers.count %>
+      <% if user_signed_in? %>
+        <button><%= link_to "Edit", edit_user_path(@user) %></button>
       <% end %>
-    </p>
-    <span id="follow-<%= @user.id %>">
-      <p><%= render 'relationships/follow', user: @user %></p>
-    </span>
-    <p>post:
-      <% @places.each do |place| %>
-        <%= link_to place_path(place) do %>
-          <%= place.name %>
-        <% end %>
-    </p>
-    <% end %><br>
-    <%= link_to :back do %>
-     <button>Back</button>
-    <% end %>
-    <% if user_signed_in? %>
-      <button><%= link_to "Edit", edit_user_path(@user) %></button>
-    <% end %>
+    </div>
   </div>
 </div>
