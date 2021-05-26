@@ -1,24 +1,26 @@
-<h3>Place in details</h3>
-<div class="place_show">
-  <p><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
-  <p>観光地名:<%= @place.name %></p>
-  <!--いいね機能-->
-  <% if user_signed_in? %>
-    <span id="like-<%= @place.id %>">
-      <%= render 'likes/like', place: @place %>
-    </span>
-  <% else %>
-    <p>♥<%= @place.likes.count %></p>
-  <% end %>
-  <p>住所:<%= @place.address %></p>
-  <p>ユーザー名:<%= @place.user.name %></p>
-  <p>場所説明:<%= @place.capitan %></p>
-  <p>投稿日時:<%= @place.created_at.strftime('%Y/%m/%d') %></p>
-  <% if @place.user == current_user %>
-    <button><%= link_to "Back", :back %></button>
-    <button><%= link_to "Edit", edit_place_path(@place) %></button>
-    <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
-  <% end %>
+<h3 class="title">Place in details</h3>
+<div class="top">
+  <div class="text-center">
+    <p><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></p>
+    <p>観光地名:<%= @place.name %></p>
+    <!--いいね機能-->
+    <% if user_signed_in? %>
+      <span id="like-<%= @place.id %>">
+        <%= render 'likes/like', place: @place %>
+      </span>
+    <% else %>
+      <p>♥<%= @place.likes.count %></p>
+    <% end %>
+    <p>住所:<%= @place.address %></p>
+    <p>ユーザー名:<%= @place.user.name %></p>
+    <p>場所説明:<%= @place.capitan %></p>
+    <p>投稿日時:<%= @place.created_at.strftime('%Y/%m/%d') %></p>
+    <% if @place.user == current_user %>
+      <button><%= link_to "Back", :back %></button>
+      <button><%= link_to "Edit", edit_place_path(@place) %></button>
+      <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
+    <% end %>
+  
 </div>
 <!--コメント表示-->
 <%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
