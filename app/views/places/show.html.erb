@@ -5,18 +5,18 @@
       <tr>
         <td width="200"></td>
         <td width="200">Place</td>
-        <td width="200">Like</td>
+        <td width="100">Like</td>
         <td width="200">Capitan</td>
         <td width="200">Address</td>
         <td width="200">User name</td>
-        <td width="200">Create time</td>
+        <td width="100">Create time</td>
       </tr>
     </thead>
     <body>
       <tr>
         <td width="200"><%= attachment_image_tag(@place, :image, :fill, 300, 300, format: 'jpeg', fallback: "no_image.jpg") %></td>
         <td width="200"><%= @place.name %></td>
-        <td width="200"><!--いいね機能-->
+        <td width="100"><!--いいね機能-->
           <% if user_signed_in? %>
             <span id="like-<%= @place.id %>">
               <%= render 'likes/like', place: @place %>
@@ -32,15 +32,17 @@
             <%= @place.user.name %>
           <% end %>
         </td>
-        <td width="200"><%= @place.created_at.strftime('%Y/%m/%d') %></td>
+        <td width="100"><%= @place.created_at.strftime('%Y/%m/%d') %></td>
       </tr>
     </body>
   </table>
+  <div class="text-center">
     <% if @place.user == current_user %>
       <button><%= link_to "Back", :back %></button>
       <button><%= link_to "Edit", edit_place_path(@place) %></button>
       <button><%= link_to "Delete", place_path(@place), method: :delete, "data-confirm" => "本当に削除しますか?" %></button>
     <% end %>
+  </div>
     <!--コメント表示-->
     <%= render 'place_comments/place_comment', place: @place, place_comment: @place_comment %>
     <!--地図表示--><br>

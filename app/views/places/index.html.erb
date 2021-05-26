@@ -6,50 +6,54 @@
     </div>
 </div>
     <div class="top">
-      <% @places.each do |place| %>
-      <table class="mx-auto">
-        <tr>
-          <td width="150"></td>
-          <td>
-            <%= link_to place_path(place.id) do %>
-              <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>Place</td>
-          <td>
-            <%= link_to place_path(place.id) do %>
-              <%= place.name %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>Address</td>
-          <td><%= place.address %></td>
-        </tr>
-        <tr>
-          <td>User</td>
-          <td>
-            <% if user_signed_in? %>
-              <%= link_to user_path(place.user) do %>
-                <%= place.user.name %>
-              <% end %>
-            <% else %>
-              <%= place.user.name %>
-            <% end %>
-          </td>
-        </tr>
-        <tr>
-          <td>♥</td>
-          <td><%= place.likes.count %></td>
-        </tr>
-        <tr>
-          <td>comment</td>
-          <td><%= place.place_comments.count %></td>
-        </tr>
-      </table>
+      <div class="row mt-5 mx-5">
+        <% @places.each do |place| %>
+        <div class="mx-auto">
+          <table class="mx-auto">
+            <tr>
+              <td width="100"></td>
+              <td>
+                <%= link_to place_path(place.id) do %>
+                  <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>Place</td>
+              <td>
+                <%= link_to place_path(place.id) do %>
+                  <%= place.name %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>Address</td>
+              <td><%= place.address %></td>
+            </tr>
+            <tr>
+              <td>User</td>
+              <td>
+                <% if user_signed_in? %>
+                  <%= link_to user_path(place.user) do %>
+                    <%= place.user.name %>
+                  <% end %>
+                <% else %>
+                  <%= place.user.name %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>♥</td>
+              <td><%= place.likes.count %></td>
+            </tr>
+            <tr>
+              <td>comment</td>
+              <td><%= place.place_comments.count %></td>
+            </tr>
+          </table>
+        </div>
       <% end %>
+      </div>
     </div>
   <%= paginate @places %>
 <%#= link_to :back do %>

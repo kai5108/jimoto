@@ -30,11 +30,6 @@
         <tr>
           <td>post</td>
           <td>
-            <span id="follow-<%= @user.id %>">
-              <p><%= render 'relationships/follow', user: @user %></p>
-            </span>
-          </td>
-          <td>
             <% @places.each do |place| %>
               <%= link_to place_path(place) do %>
                 <%= place.name %>
@@ -43,13 +38,14 @@
           </td>
         </tr>
     </table>
-    <div class="text-center">
+    <span id="follow-<%= @user.id %>">
+      <p><%= render 'relationships/follow', user: @user %></p>
+    </span>
       <%= link_to :back do %>
        <button>Back</button>
       <% end %>
       <% if user_signed_in? %>
         <button><%= link_to "Edit", edit_user_path(@user) %></button>
       <% end %>
-    </div>
   </div>
 </div>
