@@ -1,0 +1,40 @@
+<div class="container">
+  <h2>
+     Place 検索結果"<%= @content %>"
+  </h2>
+  <div class="row col-12">
+    <table class="text-center mx-auto, table table-bordered", style="font-size:20px;">
+      <thead class="thead-light">
+        <tr>
+          <% if @model == "place" %>
+            <th>Picture</th>
+            <th>Place</th>
+            <th>Capitan</th>
+            <th>Like</th>
+          <% end %>
+          </tr>
+      </thead>
+      <body>
+        <!--場所名検索結果-->
+        <% if @model == "place" %>
+        <% @datas.each do |data| %>
+        <tr>
+          <td width="200">
+            <%= attachment_image_tag(data, :image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg") %>
+          </td>
+          <td>
+            <%= data.name %>
+          </td>
+          <td>
+            <%= data.capitan %>
+          </td>
+          <td>
+            <%= data.likes.count %>
+          </td>
+        </tr>
+        <% end %>
+        <% end %>
+      </body>
+    </table>
+  </div>
+</div>
