@@ -37,7 +37,6 @@
     </body>
   </table>
   <div class="text-center">
-    <button><%= link_to "掲示板へ", place_group_group_path(@place) %></button><br>
     <% if @place.user == current_user %>
       <button><%= link_to "Back", :back %></button>
       <button><%= link_to "Edit", edit_place_path(@place) %></button>

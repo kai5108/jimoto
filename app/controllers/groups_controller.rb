@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   def create
     if Group.create(group_params)
-      redirect_to place_group_path, notice: 'グループを作成しました'
+      redirect_to place_group_path
     else
       render :new
     end

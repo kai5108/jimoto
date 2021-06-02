@@ -20,6 +20,9 @@
             <li class="nav-item">
               <%= link_to 'Place', places_path, class: 'fas fa-map-marker-alt border rounded nav-link text-dark mr-4' %>
             </li>
+            <li class="nav-item">
+              <%= link_to 'board', groups_path, class="fas fa-chalkboard border rounded nav-link text-dark mr-4" 
+            </li>
           <% else %>
             <li class="nav-item">
               <%= link_to "Sign Up", new_user_registration_path, class: 'fas fa-user-plus border rounded nav-link text-dark mr-4' %>
