@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :places, dependent: :destroy
   has_many :place_comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :chats, dependent: :destroy
   # フォロー機能
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow

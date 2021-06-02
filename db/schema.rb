@@ -10,22 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_01_051241) do
+ActiveRecord::Schema.define(version: 2021_06_02_012714) do
 
-  create_table "group_users", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "user_id"
+  create_table "chats", force: :cascade do |t|
+    t.integer "users_id", null: false
+    t.integer "partner_id", null: false
+    t.string "sentence", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["group_id"], name: "index_group_users_on_group_id"
-    t.index ["user_id"], name: "index_group_users_on_user_id"
-  end
-
-  create_table "groups", force: :cascade do |t|
-    t.string "name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["name"], name: "index_groups_on_name", unique: true
+    t.index ["users_id"], name: "index_chats_on_users_id"
   end
 
   create_table "likes", force: :cascade do |t|

@@ -21,7 +21,7 @@
               <%= link_to 'Place', places_path, class: 'fas fa-map-marker-alt border rounded nav-link text-dark mr-4' %>
             </li>
             <li class="nav-item">
-              <%= link_to 'board', groups_path, class="fas fa-chalkboard border rounded nav-link text-dark mr-4" 
+              <%= link_to 'Board', chats_path(current_user.id), class: "fas fa-chalkboard border rounded nav-link text-dark mr-4" %>
             </li>
           <% else %>
             <li class="nav-item">
