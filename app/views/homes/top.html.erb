@@ -15,15 +15,15 @@
             <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
           <% end %>
         </p>
-        <p>観光地名:
+        <p>Place:
           <%= link_to place_path(place.id) do %>
             <%= place.name %>
           <% end %>
         </p>
-        <p>住所:
+        <p>Address:
           <%= place.address %>
         </p>
-        <p>投稿ユーザー:
+        <p>User name:
           <% if user_signed_in? %>
             <%= link_to user_path(place.user) do %>
               <%= place.user.name %>
