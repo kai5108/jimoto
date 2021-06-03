@@ -11,4 +11,5 @@ Rails.application.routes.draw do
     get 'follow' => 'users#follow'
     get 'follower' => 'users#follower'
   end
+  resources :chats, only: [:index, :show]
 end
