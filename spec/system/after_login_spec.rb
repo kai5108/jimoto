@@ -1,22 +1,18 @@
 require 'rails_helper'
 
 describe '[STEP2] ユーザログイン後のテスト' do
-  # let(:user) { create(:user) }
-  # let!(:other_user) { create(:user) }
-  # let!(:place) { create(:place, user: user) }
-  # let!(:other_place) { create(:place, user: other_user) }
   let(:user) { create(:user) }
   let!(:other_user) { create(:user) }
   let!(:place) { FactoryBot.build(:place, user_id: user.id) }
   let!(:other_place) { FactoryBot.build(:place, user: other_user) }
-  
+
   before do
     visit new_user_session_path
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
     click_button 'ログイン'
   end
-  
+
   describe 'ヘッダーのテスト: ログインしている場合' do
     context 'リンクの内容を確認' do
       subject { current_path }
@@ -52,33 +48,48 @@ describe '[STEP2] ユーザログイン後のテスト' do
         board_link = board_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         board_link.gsub!(/\n/, '')
         click_link board_link
-        is_expected.to eq '/chats.2' 
+        is_expected.to eq '/chats.2'
       end
     end
   end
 
-  # describe '投稿一覧画面のテスト' do
-  #   before do
-  #     visit books_path
-  #   end
+  describe 'Place一覧画面のテスト' do
+    before do
+      visit places_path
+    end
 
-  #   context '表示内容の確認' do
-  #     it 'URLが正しい' do
-  #       expect(current_path).to eq '/books'
-  #     end
-  #     it '自分と他人の画像のリンク先が正しい' do
-  #       expect(page).to have_link '', href: user_path(book.user)
-  #       expect(page).to have_link '', href: user_path(other_book.user)
-  #     end
-  #     it '自分の投稿と他人の投稿のタイトルのリンク先がそれぞれ正しい' do
-  #       expect(page).to have_link book.title, href: book_path(book)
-  #       expect(page).to have_link other_book.title, href: book_path(other_book)
-  #     end
-  #     it '自分の投稿と他人の投稿のオピニオンが表示される' do
-  #       expect(page).to have_content book.body
-  #       expect(page).to have_content other_book.body
-  #     end
-  #   end
+    context '表示内容の確認' do
+      it 'URLが正しい' do
+        expect(current_path).to eq '/places'
+      end
+      it '「観光地一覧」と表示される' do
+        expect(page).to have_content '観光地一覧'
+      end
+      it 'こちらからを押すと、place新規登録画面へ遷移する' do
+        click_link 'こちらから'
+        expect(current_path).to eq '/places/new' 
+      end
+      # it '投稿のタイトルのリンク先がそれぞれ正しい' do
+      #   expect(page).to have_link other_place.name, href: place_path(other_place)
+      # end
+      # it '投稿者のリンク先が正しい' do
+      #   expect(page).to have_link place.user.name, href: user_path(place.user)
+      #   expect(page).to have_link place.user.name, href: user_path(other_place.user)
+      # end
+      # it '投稿の住所が表示される' do
+      #   expect(page).to have_content other_place.address
+      # end
+      it '投稿のいいね数が表示される' do
+        expect(page).to have_content place.likes.count
+        expect(page).to have_content other_place.likes.count
+      end
+      it 'コメント数が表示される' do
+        expect(page).to have_content place.place_comments.count
+        expect(page).to have_content other_place.place_comments.count
+      end
+    end
+  end
+
 
   #   context 'サイドバーの確認' do
   #     it '自分の名前と紹介文が表示される' do
