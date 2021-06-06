@@ -1,16 +1,20 @@
 require 'rails_helper'
 
 describe '[STEP2] ユーザログイン後のテスト' do
+  # let(:user) { create(:user) }
+  # let!(:other_user) { create(:user) }
+  # let!(:place) { create(:place, user: user) }
+  # let!(:other_place) { create(:place, user: other_user) }
   let(:user) { create(:user) }
   let!(:other_user) { create(:user) }
-  let!(:place) { create(:place, user: user) }
-  let!(:other_place) { create(:place, user: other_user) }
+  let!(:place) { FactoryBot.build(:place, user_id: user.id) }
+  let!(:other_place) { FactoryBot.build(:place, user: other_user) }
   
   before do
     visit new_user_session_path
-    fill_in 'user[name]', with: user.name
+    fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
-    click_button 'Log in'
+    click_button 'ログイン'
   end
   
   describe 'ヘッダーのテスト: ログインしている場合' do
@@ -18,23 +22,23 @@ describe '[STEP2] ユーザログイン後のテスト' do
       subject { current_path }
 
       it 'Log outを押すと、自分のユーザ詳細画面に遷移する' do
-        login_link = find_all('a')[1].native.inner_text
-        login_link = login_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
-        click_link home_link
+        logout_link = find_all('a')[1].native.inner_text
+        logout_link = logout_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
+        click_link logout_link
         is_expected.to eq '/'
       end
       it 'New postを押すと、Place新規登録画面に遷移する' do
         newpost_link = find_all('a')[2].native.inner_text
         newpost_link = newpost_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         click_link newpost_link
-        is_expected.to eq '/place/new'
+        is_expected.to eq '/places/new'
       end
       it 'My pageを押すと、マイページ画面に遷移する' do
         mypage_link = find_all('a')[3].native.inner_text
         mypage_link = mypage_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         mypage_link.gsub!(/\n/, '')
         click_link mypage_link
-        is_expected.to eq '/users'
+        is_expected.to eq '/users/' + user.id.to_s
       end
       it 'Placeを押すと、場所一覧画面に遷移する' do
         place_link = find_all('a')[4].native.inner_text
@@ -48,7 +52,7 @@ describe '[STEP2] ユーザログイン後のテスト' do
         board_link = board_link.gsub(/\n/, '').gsub(/\A\s*/, '').gsub(/\s*\Z/, '')
         board_link.gsub!(/\n/, '')
         click_link board_link
-        is_expected.to eq '/chats'
+        is_expected.to eq '/chats.2' 
       end
     end
   end
