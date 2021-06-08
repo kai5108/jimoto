@@ -28,6 +28,14 @@
           </td>
         </tr>
         <tr>
+          <td>Like</td>
+          <td>
+            <%= link_to place_likes_path(@user) do %>
+              <%= @user.likes.count %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
           <td>post</td>
           <td>
             <% @places.each do |place| %>
@@ -45,7 +53,7 @@
        <button>Back</button>
       <% end %>
       <% if user_signed_in? %>
-        <button><%= link_to "Edit", edit_user_path(@user) %></button>
+        <button><%= link_to "Edit", edit_user_path(current_user) %></button>
       <% end %>
   </div>
 </div>
