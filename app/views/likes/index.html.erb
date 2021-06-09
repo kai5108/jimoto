@@ -1,0 +1,52 @@
+<h3 class="title">Like</h3>
+<div class="top">
+  <div class="row mt-5 mx-5">
+    <% @place.each do |place| %>
+    <div class="mx-auto">
+      <table class="mx-auto">
+        <tr>
+          <td width="100"></td>
+          <td>
+            <%= link_to place_path(place.id) do %>
+              <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="fas fa-vihara">Place</td>
+          <td>
+            <%= link_to place_path(place.id) do %>
+              <%= place.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="fas fa-map-pin">Address</td>
+          <td><%= place.address %></td>
+        </tr>
+        <tr>
+          <td class="far fa-user">User</td>
+          <td>
+            <% if user_signed_in? %>
+              <%= link_to user_path(place.user) do %>
+                <%= place.user.name %>
+              <% end %>
+            <% else %>
+              <%= place.user.name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td class="far fa-thumbs-up">♥</td>
+          <td><%= place.likes.count %></td>
+        </tr>
+        <tr>
+          <td class="far fa-comments">comment</td>
+          <td><%= place.place_comments.count %></td>
+        </tr>
+      </table>
+    </div>
+  <% end %>
+  </div>
+</div>
+<%= paginate @places %>
