@@ -23,6 +23,6 @@ class PlaceCommentsController < ApplicationController
 
   private
   def place_comment_params
-    params.require(:place_comment).permit(:comment)
+    params.require(:place_comment).permit(:comment, :rate)
   end
 end

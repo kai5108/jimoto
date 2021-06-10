@@ -16,6 +16,20 @@
           <% end %>
         </td>
         <td width="200"><%= place_comment.created_at.strftime('%Y/%m/%d') %></td>
+        <td width="200">
+          <div id="star-rate-<%= place_comment.id %>"></div>
+          <script>
+            $('#star-rate-<%= place_comment.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= place_comment.rate %>,
+            });
+          </script>  
+        </td>
         <td width="300"><%= place_comment.comment %></td>
         <td width="200">
           <% if place_comment.user == current_user %>
@@ -32,7 +46,22 @@
     <% if user_signed_in? %>
       <div class="new_comment">
         <%= form_with(model:[@place, @place_comment], remote: true) do |f| %>
-          <%= f.text_area :comment, :size=>"70x5", rows:'5',placeholder: "コメントをここに" %><br>
+          <div class="form-group" id="star">
+            <%= f.hidden_field :rate, id: :review_star %>
+          </div>
+          <script>
+            $('#star').raty({
+              size     : 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              scoreName: 'place_comment[rate]',
+              half: true,
+            });
+          </script>
+          <div class="form-group">
+            <%= f.text_area :comment, :size=>"70x5", rows:'5',placeholder: "コメントをここに" %>
+          </div>
           <button><%= f.submit "送信する" %></button>
         <% end %>
       </div>
