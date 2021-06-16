@@ -2,8 +2,13 @@ crumb :root do
   link "Home", root_path
 end
 
-crumb :top do
-  link "Top", new_user_session_path
+crumb :user_login do
+  link "Login", new_user_session_path
+  parent :root
+end
+
+crumb :user_signin do
+  link "Signin", new_user_registration_path
   parent :root
 end
 
