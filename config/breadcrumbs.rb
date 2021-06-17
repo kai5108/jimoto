@@ -12,20 +12,20 @@ crumb :user_signin do
   parent :root
 end
 
-# crumb :user_show do
-#   link "User", user_path
-#   parent :root
-# end
+crumb :user_show do
+  link "User", user_path
+  parent :root
+end
 
 # crumb :user_show do |user|
-#   link "#{user.name} show", user_path(user)
+#   link "User show", user_path(user)
 #   parent :root
 # end
 
-# crumb :user_edit do
-#   link "User edit"
-#   parent :user_show
-# end
+crumb :user_edit do
+  link "User edit", edit_user_path(current_user)
+  parent :user_show
+end
 
 
 # If you want to split your breadcrumbs configuration over multiple files, you
