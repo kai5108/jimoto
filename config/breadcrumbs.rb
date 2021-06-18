@@ -27,6 +27,25 @@ crumb :user_edit do
   parent :user_show
 end
 
+crumb :place do
+  link "Place", places_path
+  parent :root
+end
+
+crumb :place_new do
+  link "Place new", new_place_path
+  parent :root
+end
+
+crumb :place_show do
+  link "Place show", place_path
+  parent :place
+end
+
+crumb :place_edit do
+  link "Place edit", edit_place_path
+  parent :place_show
+end
 
 # If you want to split your breadcrumbs configuration over multiple files, you
 # can create a folder named `config/breadcrumbs` and put your configuration
