@@ -1,3 +1,5 @@
+<% breadcrumb :user_edit, @user %>
+<%= breadcrumbs separator: " &rsaquo; " %>
 <h3 class="title">My page edit</h3>
 <%= render 'layouts/massage', obj: @user %>
 <table class="mx-auto border-light">
@@ -14,7 +16,7 @@
     <td>capitan</td>
     <td><%= f.text_field :capitan, :size=>"40x5"%></td>
   </tr>
-</table>
+</table><br>
 <div class="text-center">
   <button><%= f.submit 'Edit' %></button>
   <%= link_to :back do %>
