@@ -1,3 +1,5 @@
+<% breadcrumb :chat_show %>
+<%= breadcrumbs separator: " &rsaquo; " %>
 <h2 style="text-align:center"><%= "#{@partner.name}さんとのチャット" %></h2>
 <div id="chats">
   <% @chats.each do |chat| %>

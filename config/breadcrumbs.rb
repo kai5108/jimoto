@@ -17,11 +17,6 @@ crumb :user_show do
   parent :root
 end
 
-# crumb :user_show do |user|
-#   link "User show", user_path(user)
-#   parent :root
-# end
-
 crumb :user_edit do
   link "User edit", edit_user_path(current_user)
   parent :user_show
@@ -45,6 +40,21 @@ end
 crumb :place_edit do
   link "Place edit", edit_place_path
   parent :place_show
+end
+
+crumb :search do
+  link "Search", searches_search_path
+  parent :place
+end
+
+crumb :chat do
+  link "Chat", chats_path
+  parent :root
+end
+
+crumb :chat_show do
+  link "Chat show", chat_path
+  parent :chat
 end
 
 # If you want to split your breadcrumbs configuration over multiple files, you
