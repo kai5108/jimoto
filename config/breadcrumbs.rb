@@ -13,7 +13,7 @@ crumb :user_signin do
 end
 
 crumb :user_show do
-  link "User", user_path
+  link "User", user_path(current_user)
   parent :root
 end
 
@@ -55,6 +55,16 @@ end
 crumb :chat_show do
   link "Chat show", chat_path
   parent :chat
+end
+
+crumb :follow do
+  link "Follow", user_follow_path
+  parent :user_show
+end
+
+crumb :follower do
+  link "Follower", user_follower_path
+  parent :user_show
 end
 
 # If you want to split your breadcrumbs configuration over multiple files, you
