@@ -3,9 +3,11 @@
 <h3 class="title">観光地一覧</h3>
 <div class="text-center">
   <p>全<%= @place_all.count %>件</p>
+  <% if user_signed_in? %>
     <div class="post">
       新規登録する際は<%= link_to"こちらから", new_place_path %>
     </div>
+  <% end %>
   <div class='search-form'>
     <%= form_tag(searches_search_path, method: :get) do %>
       <%= text_field_tag 'search[content]' %>
