@@ -19,6 +19,12 @@
 //= require underscore
 //= require gmaps/google
 //= require jquery
+
+// require("@rails/ujs").start()
+// require("@rails/activestorage").start()
+// require("channels")
+// require('./preview') 
+
 (function(root, factory) {
   if (typeof define === 'function' && define.amd) {
     define(['jquery'], factory);

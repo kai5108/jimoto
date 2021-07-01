@@ -3,11 +3,21 @@
 <h3 class="title">Post new</h3>
 <div class="container">
  <%= render 'layouts/massage', obj: @place %>
+ <%= form_with model: @place, local:true do |f| %>
+</div>
  <table class="mx-auto border-light">
-  <%= form_with model: @place, local:true do |f| %>
    <tr>
-    <td class="far fa-image", width="100">Picture</td>
-    <td><%= f.file_field :image %></td>
+    <div class="img-upload">
+      <div class="left-img-upload">
+        <div class="click-upload">
+          <td class="far fa-image", width="100">Picture</td>
+          <td><%= f.file_field :image %></td>
+        </div>
+      </div>
+    </div>
+    <div class="right-img-upload">
+      <div id="image"></div>  <!--追記する-->
+    </div>
    </tr>
    <tr>
     <td class="fas fa-vihara">Place</td>
