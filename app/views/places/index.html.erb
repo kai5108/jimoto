@@ -21,15 +21,10 @@
       <div class="row mt-5 mx-5">
         <% @places.each do |place| %>
         <div class="mx-auto">
+          <%= link_to place_path(place.id) do %>
+            <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
+          <% end %><br>
           <table class="mx-auto">
-            <tr>
-              <td width="100"></td>
-              <td>
-                <%= link_to place_path(place.id) do %>
-                  <%= attachment_image_tag(place, :image, :fill, 250, 200, format: 'jpeg', fallback: "no_image.jpg") %>
-                <% end %>
-              </td>
-            </tr>
             <tr>
               <td class="fas fa-vihara">Place</td>
               <td>
@@ -55,7 +50,7 @@
               </td>
             </tr>
             <tr>
-              <td class="far fa-thumbs-up">♥</td>
+              <td class="far fa-thumbs-up">Like♥</td>
               <td><%= place.likes.count %></td>
             </tr>
             <tr>
